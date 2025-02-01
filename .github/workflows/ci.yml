@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+defaults:
+  run:
+    shell: "nix shell nixpkgs#git-lfs --command {0}"
+
+jobs:
+  build:
+    runs-on: nix
+    steps:
+      - name: Initialize CI
+        uses: https://git.qo.is/qo.is/actions-nix-init@main
+
+      - name: Build
+        run: nix build
+
+      - name: Run Checks
+        run: nix flake check
+
+      - name: Deploy
+        if: success() && github.ref == 'refs/heads/main'
+        run: |
+          mkdir ~/.ssh/
+          echo -e "Host lindberg-webapps.backplane.net.qo.is\n    StrictHostKeyChecking no" >> ~/.ssh/config
+          (umask 0077 && printf "%s" "${{ secrets.SSH_DEPLOY_KEY }}" > ~/.ssh/id_ed25519 && echo >> ~/.ssh/id_ed25519)
+          nix run .#deploy

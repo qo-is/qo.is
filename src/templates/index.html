@@ -1,0 +1,50 @@
+{% extends "juice/templates/index.html" %}
+{% block favicon %}
+<link rel="icon" type="image/svg" href="/bulb.svg" />
+{% endblock favicon %}
+
+{% block hero %}
+<section class="text-center" style="margin-top: 4em">
+    <h1 class="heading-text" style="font-size: 50px; border-left: none">
+        running our own infrastructure. batteries included.
+    </h1>
+    <h3 class="title-text" style="border-left: none">
+        Nextcloud, Vaultwarden, Forgejo, Websites, and more. The nix way.
+    </h3>
+</section>
+
+<style>
+    .hero section {
+        padding: 0 5rem;
+    }
+    @media screen and (max-width: 768px) {
+        .hero section {
+            padding: 0 2rem;
+        }
+
+        .hero-image {
+            display: none;
+        }
+    }
+</style>
+
+<img class="hero-image" style="max-width: 50%; max-height: 70vh;" src="{{ get_url(path="bulb.svg") }}">
+
+<div
+    style="font-size: 2rem"
+    class="explore-more text"
+    onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})"
+>
+    ↩️
+</div>
+{% endblock hero %} {% block sidebar %} {% endblock sidebar %} {% block footer
+%}
+<footer>
+    <small class="subtext">
+        © Verein qo.is. Powered by
+        <a href="https://www.getzola.org">Zola</a> with
+        <a href="https://juice.huhu.io">Juice Theme</a>. Icons by
+        <a href="https://github.com/twitter/twemoji">Twemoji</a>.
+    </small>
+</footer>
+{% endblock footer %}

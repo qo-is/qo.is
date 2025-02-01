@@ -1,0 +1,50 @@
+title = "qo.is"
+base_url = "https://qo.is"
+default_language = "en"
+
+# Build options
+compile_sass = false
+minify_html = false
+ignored_content = [".gitignore", ".gitkeep"]
+
+# Theme
+theme = "juice"
+#quick_navigation_buttons = true
+
+# Search
+build_search_index = false
+
+# Feed
+generate_feeds = false
+
+# Taxanomy
+taxonomies = [
+]
+
+
+[link_checker]
+external_level = "warn"
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+
+[slugify]
+paths = "safe"
+taxonomies = "safe"
+anchors = "on"
+
+[extra]
+author = "qo.is contributers"
+
+juice_logo_name = "qo.is"
+juice_logo_path = "bulb.svg"
+juice_extra_menu = [
+    { title = "documentation", link = "https://docs-ops.qo.is" },
+    { title = "git", link = "https://git.qo.is/qo.is" },
+    { title = "contact", link = "mailto:sysadmin+web@qo.is" },
+]
+juice_exclude_menu = [
+]
+repository_url = "https://git.qo.is/qo.is"
