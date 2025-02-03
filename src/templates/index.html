@@ -14,6 +14,24 @@
 </section>
 
 <style>
+@keyframes flicker {
+    from { filter: drop-shadow(0 -2rem 1rem #303030); }
+    45% { filter: drop-shadow(0 -2rem 1rem #303030); }
+    53% { filter: drop-shadow(0 -2rem 1rem #4d3f13); }
+    55% { filter: drop-shadow(0 -2rem 1rem #303030); }
+    57% { filter: drop-shadow(0 -2rem 1rem #4d3f13); }
+    to { filter: drop-shadow(0 -2rem 3rem #806a20); }
+}
+
+    .hero-image {
+        max-width: 50%;
+        max-height: 70vh;
+        filter: drop-shadow(0 -2rem 2.5rem #303030)
+        will-change: filter;
+        animation: flicker 1.5s normal forwards;
+        animation-iteration-count: 1;
+        animation-delay: 1s;
+   }
     .hero section {
         padding: 0 5rem;
     }
@@ -28,7 +46,7 @@
     }
 </style>
 
-<img class="hero-image" style="max-width: 50%; max-height: 70vh;" src="{{ get_url(path="bulb.svg") }}">
+<img class="hero-image" src="{{ get_url(path="bulb.svg") }}">
 
 <div
     style="font-size: 2rem"
