@@ -20,7 +20,8 @@
       system = "x86_64-linux";
       domain = "qo.is";
       version = "1";
-      pkgs = import nixpkgs-unstable {
+      pkgs = import nixpkgs-unstable { inherit system; };
+      deployPkgs = import nixpkgs-unstable {
         inherit system;
         overlays = [
           deploy-rs.overlay
@@ -66,7 +67,7 @@
         hostname = "lindberg-webapps.backplane.net.qo.is";
         profiles.${domain} = {
           sshUser = "nginx-${domain}";
-          path = pkgs.deploy-rs.lib.activate.noop self.packages.${system}.default;
+          path = deployPkgs.deploy-rs.lib.activate.noop self.packages.${system}.default;
           profilePath = "/var/lib/nginx-${domain}/root";
         };
       };
