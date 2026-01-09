@@ -39,7 +39,7 @@
       '';
     in
     {
-      formatter.${system} = pkgs.nixfmt-rfc-style;
+      formatter.${system} = pkgs.nixfmt-tree;
       checks.${system}.default = pkgs.stdenv.mkDerivation {
         inherit version;
         name = "${domain}-${version}";
