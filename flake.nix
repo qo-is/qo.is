@@ -65,11 +65,15 @@
 
       deploy.nodes.lindberg-webapps = {
         hostname = "lindberg-webapps.backplane.net.qo.is";
-        profiles.${domain} = {
-          sshUser = "nginx-${domain}";
-          path = deployPkgs.deploy-rs.lib.activate.noop self.packages.${system}.default;
-          profilePath = "/var/lib/nginx-${domain}/root";
-        };
+        profiles.${domain} =
+          let
+            sshUser = "nginx-${domain}";
+          in
+          {
+            inherit sshUser;
+            path = deployPkgs.deploy-rs.lib.activate.noop self.packages.${system}.default;
+            profilePath = "/var/lib/${sshUser}/.local/state/nix/profiles/webroot";
+          };
       };
 
       apps.${system} =
