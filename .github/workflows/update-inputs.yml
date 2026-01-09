@@ -1,0 +1,21 @@
+name: Update Flake Inputs
+on:
+  schedule:
+    - cron: '0 3 * * 0' # Weekly on Sunday
+  workflow_dispatch: # Allow manual triggering
+defaults:
+  run:
+    shell: nix develop --command bash -c "{0}"
+jobs:
+  update:
+    runs-on: nix
+    steps:
+      - name: Initialize CI
+        uses: https://git.qo.is/qo.is/actions-nix-init@main
+        with:
+          token: ${{ secrets.CI_TOKEN }}
+      - name: Update flake inputs
+        uses: https://github.com/Mic92/update-flake-inputs-gitea@main
+        with:
+          gitea-token: ${{ secrets.CI_TOKEN }}
+          auto-merge: 'true'
