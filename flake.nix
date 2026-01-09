@@ -24,7 +24,7 @@
       deployPkgs = import nixpkgs-unstable {
         inherit system;
         overlays = [
-          deploy-rs.overlay
+          deploy-rs.overlays.default
           (self: super: {
             deploy-rs = {
               inherit (pkgs) deploy-rs;
